@@ -56,6 +56,19 @@ export const constantRoutes = [
   },
 
   {
+    path: '/rss',
+    component: Layout,
+    redirect: '/detail',
+    name: 'RSS',
+    children: [{
+      path: 'rss',
+      name: 'detail',
+      component: () => import('@/views/rss/index'),
+      meta: { title: 'detail', icon: 'dashboard' }
+    }]
+  },
+
+  {
     path: '/example',
     component: Layout,
     redirect: '/example/table',

@@ -1,6 +1,7 @@
 module.exports = {
 
-  title: 'Vue Admin Template',
+  defaultSettings: 'Msg',
+  title: 'Msg',
 
   /**
    * @type {boolean} true | false
