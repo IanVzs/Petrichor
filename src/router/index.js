@@ -64,7 +64,7 @@ export const constantRoutes = [
       path: 'rss',
       name: 'detail',
       component: () => import('@/views/rss/index'),
-      meta: { title: 'detail', icon: 'dashboard' }
+      meta: { title: 'RSS文章详情', icon: 'dashboard' }
     }]
   },
 
