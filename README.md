@@ -7,7 +7,7 @@ English | [简体中文](./README-zh.md)
 **Live demo:** 
 
 
-**The current version is `v4.0+` build on `vue-cli`. **
+**The current version is `v4.0+` build on `vue-cli`.**
 
 ## Build Setup
 
