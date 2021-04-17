@@ -58,14 +58,14 @@ export const constantRoutes = [
   {
     path: '/rss',
     component: Layout,
-    redirect: '/detail',
-    name: 'RSS',
-    children: [{
-      path: 'rss',
-      name: 'detail',
-      component: () => import('@/views/rss/index'),
-      meta: { title: 'RSS文章详情', icon: 'dashboard' }
-    }]
+    children: [
+      {
+        path: 'index',
+        name: 'Rss',
+        component: () => import('@/views/rss/index'),
+        meta: { title: 'Rss', icon: 'form' }
+      }
+    ]
   },
 
   {
