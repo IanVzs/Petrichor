@@ -21,6 +21,11 @@ export default {
       timeoutNum: null // 断开 重连倒计时
     }
   },
+  computed: {
+    ...mapGetters([
+      'name'
+    ])
+  },
   mounted() {
     // 初始化ws
     this.initWebSocket()
@@ -37,11 +42,6 @@ export default {
   },
   destroyed() {
     this.ws.close()
-  },
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
   },
   methods: {
     // 数据发送
@@ -102,7 +102,7 @@ export default {
           _this.ws.send(JSON.stringify(actions))
         }
         _this.ws.onclose = function(e) {
-          console.log('ws连接出错')
+          console.log('ws连接断开')
           _this.reconnect()
         }
         _this.ws.onerror = function(e) {

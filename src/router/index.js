@@ -58,14 +58,14 @@ export const constantRoutes = [
   {
     path: '/rss',
     component: Layout,
-    redirect: '/detail',
-    name: 'RSS',
-    children: [{
-      path: 'rss',
-      name: 'detail',
-      component: () => import('@/views/rss/index'),
-      meta: { title: 'RSS文章详情', icon: 'dashboard' }
-    }]
+    children: [
+      {
+        path: 'index',
+        name: 'Rss',
+        component: () => import('@/views/rss/index'),
+        meta: { title: 'Rss', icon: 'form' }
+      }
+    ]
   },
 
   {
@@ -168,7 +168,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        meta: { title: '感谢链接', icon: 'link' }
       }
     ]
   },
