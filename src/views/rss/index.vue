@@ -2,12 +2,14 @@
   <div>
     <h1> {{title}} </h1>
     <p v-text="html2"></p>
-    <p v-html="html"></p>
+    <p v-html="html">.</p>
   </div>
 </template>
 
 <script>
 // import { mapGetters } from 'vuex'
+import { getDetail } from '@/api/rss'
+
 export default {
   data() {
     return {

@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function getList(params) {
   return request({
-    url: '/vue-admin-template/rss/list',
+    url: '/petrichor/rss/list',
     method: 'get',
     params
   })
@@ -10,7 +10,7 @@ export function getList(params) {
 
 export function getDetail(params) {
   return request({
-    url: '/vue-admin-template/rss/detail',
+    url: '/petrichor/rss/detail',
     method: 'get',
     params
   })

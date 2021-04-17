@@ -23,7 +23,7 @@ const detail = Mock.mock({
 
 module.exports = [
   {
-    url: '/vue-admin-template/rss/list',
+    url: '/petrichor/rss/list',
     type: 'get',
     response: config => {
       const items = data.items
@@ -37,7 +37,7 @@ module.exports = [
     }
   },
   {
-    url: '/vue-admin-template/rss/detail',
+    url: '/petrichor/rss/detail',
     type: 'get',
     response: config => {
       return {
