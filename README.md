@@ -60,7 +60,7 @@ Refer to [Documentation](https://panjiachen.github.io/vue-element-admin-site/gui
 
 ## Demo
 
-![demo]()
+![demo](https://github.com/IanVzs/Petrichor/blob/master/version_shows/now_version.jpg "now version")
 
 ## License
 

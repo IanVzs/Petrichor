@@ -55,6 +55,8 @@ npm run lint
 # 代码格式检查并自动修复
 npm run lint -- --fix
 ```
+## 预览
+![当前版本界面预览](https://github.com/IanVzs/Petrichor/blob/master/version_shows/now_version.jpg "当前版本")
 ## License
 
 [MIT](https://github.com/IanVzs/Petrichor/blob/master/LICENSE) license.
