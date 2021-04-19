@@ -3,7 +3,7 @@
 English | [简体中文](./README-zh.md)
 
 > A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
-> websocket & vue-beautiful-chat
+> & websocket & vue-beautiful-chat
 
 **Live demo:** 
 yet...
