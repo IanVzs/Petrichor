@@ -3,12 +3,15 @@
 English | [简体中文](./README-zh.md)
 
 > A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
+> websocket & vue-beautiful-chat
 
 **Live demo:** 
-
+yet...
 
 **The current version is `v4.0+` build on `vue-cli`.**
 
+## Plan
+[Plan](./plan.md)
 ## Build Setup
 
 ```bash
