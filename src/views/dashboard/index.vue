@@ -1,10 +1,33 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
+    <beautiful-chat
+      :participants="participants"
+      :titleImageUrl="titleImageUrl"
+      :onMessageWasSent="onMessageWasSent"
+      :messageList="messageList"
+      :newMessagesCount="newMessagesCount"
+      :isOpen="isChatOpen"
+      :close="closeChat"
+      :open="openChat"
+      :showEmoji="true"
+      :showFile="true"
+      :showEdition="true"
+      :showDeletion="true"
+      :showTypingIndicator="showTypingIndicator"
+      :showLauncher="true"
+      :showCloseButton="true"
+      :colors="colors"
+      :alwaysScrollToBottom="alwaysScrollToBottom"
+      :disableUserListToggle="false"
+      :messageStyling="messageStyling"
+      @onType="handleOnType"
+      @edit="editMessage" />
   </div>
 </template>
 
 <script>
+// :icons="icons"
 // import { Tree } from 'element-ui'
 import { mapGetters } from 'vuex'
 
@@ -18,7 +41,54 @@ export default {
       timeout: 3000, // 3秒一次心跳
       timeoutObj: null, // 心跳心跳倒计时
       deadTimeoutObj: null, // 心跳倒计时(死亡倒计时)
-      timeoutNum: null // 断开 重连倒计时
+      timeoutNum: null, // 断开 重连倒计时
+
+      participants: [
+        {
+          id: 'user1',
+          name: 'Tiger',
+          imageUrl: 'https://tupian.sioe.cn/b/bing-home-image/pic/small/20140729.jpg'
+        },
+        {
+          id: 'user2',
+          name: 'Support',
+          imageUrl: 'https://avatars3.githubusercontent.com/u/37018832?s=200&v=4'
+        }
+      ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
+      titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
+      messageList: [
+          { type: 'text', author: `me`, data: { text: `Say yes!` } },
+          { type: 'text', author: `user1`, data: { text: `No.` } }
+      ], // the list of the messages to show, can be paginated and adjusted dynamically
+      newMessagesCount: 0,
+      isChatOpen: false, // to determine whether the chat window should be open or closed
+      showTypingIndicator: '', // when set to a value matching the participant.id it shows the typing indicator for the specific user
+      colors: {
+        header: {
+          bg: '#4e8cff',
+          text: '#ffffff'
+        },
+        launcher: {
+          bg: '#4e8cff'
+        },
+        messageList: {
+          bg: '#ffffff'
+        },
+        sentMessage: {
+          bg: '#4e8cff',
+          text: '#ffffff'
+        },
+        receivedMessage: {
+          bg: '#eaeaea',
+          text: '#222222'
+        },
+        userInput: {
+          bg: '#f4f7f9',
+          text: '#565867'
+        }
+      }, // specifies the color scheme for the component
+      alwaysScrollToBottom: true, // when set to true always scrolls the chat to the bottom when new events are in (new message, user starts typing...)
+      messageStyling: true // enables *bold* /emph/ _underline_ and such (more info at github.com/mattezza/msgdown)
     }
   },
   computed: {
@@ -44,6 +114,49 @@ export default {
     this.ws.close()
   },
   methods: {
+    sendMessage (text) {
+      if (text.length > 0) {
+        this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
+        this.onMessageWasSent({ author: 'support', type: 'text', data: { text } })
+      }
+    },
+    receiveMessage (message) {
+      message.author = 'user1'
+      console.log('receiveMessage: ', message)
+      this.newMessagesCount = this.newMessagesCount + 1
+      this.messageList = [ ...this.messageList, message ]
+    },
+    onMessageWasSent (message) {
+      // called when the user sends a message
+      console.log(message)
+      this.send_by_ws(JSON.stringify(message))
+      this.messageList = [ ...this.messageList, message ]
+    },
+    openChat () {
+      // called when the user clicks on the fab button to open the chat
+      this.isChatOpen = true
+      this.newMessagesCount = 0
+    },
+    // icons () {
+    //   // 不清楚要干什么 TODO
+    // },
+    closeChat () {
+      // called when the user clicks on the botton to close the chat
+      this.isChatOpen = false
+    },
+    handleScrollToTop () {
+      // called when the user scrolls message list to top
+      // leverage pagination for loading another page of messages
+    },
+    handleOnType () {
+      console.log('Emit typing event')
+    },
+    editMessage(message){
+      const m = this.messageList.find(m=>m.id === message.id);
+      m.isEdited = true;
+      m.data.text = message.data.text;
+    },
+
     // 数据发送
     send_by_ws(Data) {
       this.ws.send(Data)
@@ -91,7 +204,7 @@ export default {
       const _this = this
       if (window.WebSocket) {
         // 初始化weosocket
-        const wsuri = 'ws://127.0.0.1:8000/ws'
+        const wsuri = 'ws://192.168.0.175:8000/ws'
         _this.ws = new WebSocket(wsuri)
         // 连接建立之后执行send方法发送数据
         _this.ws.onopen = function(e) {
@@ -119,7 +232,11 @@ export default {
             return
           }
           // TODO
-          console.log('正式消息, 需要做点儿什么...TODO...')
+          let msg_data = JSON.parse(resData.content)
+          if (msg_data.data) {
+            console.log('正式消息, 需要做点儿什么...TODO...')
+            _this.receiveMessage(msg_data)
+          }
         }
       }
     },
