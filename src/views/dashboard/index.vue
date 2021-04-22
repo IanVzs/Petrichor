@@ -3,26 +3,27 @@
     <div class="dashboard-text">name: {{ name }}</div>
     <beautiful-chat
       :participants="participants"
-      :titleImageUrl="titleImageUrl"
-      :onMessageWasSent="onMessageWasSent"
-      :messageList="messageList"
-      :newMessagesCount="newMessagesCount"
-      :isOpen="isChatOpen"
+      :title-image-url="titleImageUrl"
+      :on-message-was-sent="onMessageWasSent"
+      :message-list="messageList"
+      :new-messages-count="newMessagesCount"
+      :is-open="isChatOpen"
       :close="closeChat"
       :open="openChat"
-      :showEmoji="true"
-      :showFile="true"
-      :showEdition="true"
-      :showDeletion="true"
-      :showTypingIndicator="showTypingIndicator"
-      :showLauncher="true"
-      :showCloseButton="true"
+      :show-emoji="true"
+      :show-file="true"
+      :show-edition="true"
+      :show-deletion="true"
+      :show-typing-indicator="showTypingIndicator"
+      :show-launcher="true"
+      :show-close-button="true"
       :colors="colors"
-      :alwaysScrollToBottom="alwaysScrollToBottom"
-      :disableUserListToggle="false"
-      :messageStyling="messageStyling"
+      :always-scroll-to-bottom="alwaysScrollToBottom"
+      :disable-user-list-toggle="false"
+      :message-styling="messageStyling"
       @onType="handleOnType"
-      @edit="editMessage" />
+      @edit="editMessage"
+    />
   </div>
 </template>
 
@@ -57,8 +58,8 @@ export default {
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       messageList: [
-          { type: 'text', author: `me`, data: { text: `Say yes!` } },
-          { type: 'text', author: `user1`, data: { text: `No.` } }
+        { type: 'text', author: `me`, data: { text: `Say yes!` }},
+        { type: 'text', author: `user1`, data: { text: `No.` }}
       ], // the list of the messages to show, can be paginated and adjusted dynamically
       newMessagesCount: 0,
       isChatOpen: false, // to determine whether the chat window should be open or closed
@@ -114,25 +115,25 @@ export default {
     this.ws.close()
   },
   methods: {
-    sendMessage (text) {
+    sendMessage(text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
-        this.onMessageWasSent({ author: 'support', type: 'text', data: { text } })
+        this.onMessageWasSent({ author: 'support', type: 'text', data: { text }})
       }
     },
-    receiveMessage (message) {
+    receiveMessage(message) {
       message.author = 'user1'
       console.log('receiveMessage: ', message)
       this.newMessagesCount = this.newMessagesCount + 1
-      this.messageList = [ ...this.messageList, message ]
+      this.messageList = [...this.messageList, message]
     },
-    onMessageWasSent (message) {
+    onMessageWasSent(message) {
       // called when the user sends a message
       console.log(message)
       this.send_by_ws(JSON.stringify(message))
-      this.messageList = [ ...this.messageList, message ]
+      this.messageList = [...this.messageList, message]
     },
-    openChat () {
+    openChat() {
       // called when the user clicks on the fab button to open the chat
       this.isChatOpen = true
       this.newMessagesCount = 0
@@ -140,21 +141,21 @@ export default {
     // icons () {
     //   // 不清楚要干什么 TODO
     // },
-    closeChat () {
+    closeChat() {
       // called when the user clicks on the botton to close the chat
       this.isChatOpen = false
     },
-    handleScrollToTop () {
+    handleScrollToTop() {
       // called when the user scrolls message list to top
       // leverage pagination for loading another page of messages
     },
-    handleOnType () {
+    handleOnType() {
       console.log('Emit typing event')
     },
-    editMessage(message){
-      const m = this.messageList.find(m=>m.id === message.id);
-      m.isEdited = true;
-      m.data.text = message.data.text;
+    editMessage(message) {
+      const m = this.messageList.find(m => m.id === message.id)
+      m.isEdited = true
+      m.data.text = message.data.text
     },
 
     // 数据发送
@@ -232,7 +233,7 @@ export default {
             return
           }
           // TODO
-          let msg_data = JSON.parse(resData.content)
+          const msg_data = JSON.parse(resData.content)
           if (msg_data.data) {
             console.log('正式消息, 需要做点儿什么...TODO...')
             _this.receiveMessage(msg_data)

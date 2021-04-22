@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1> {{title}} </h1>
-    <p v-text="html2"></p>
+    <h1> {{ title }} </h1>
+    <p v-text="html2">.</p>
     <p v-html="html">.</p>
   </div>
 </template>
