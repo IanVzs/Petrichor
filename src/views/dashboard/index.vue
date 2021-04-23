@@ -1,29 +1,39 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
-    <beautiful-chat
-      :participants="participants"
-      :title-image-url="titleImageUrl"
-      :on-message-was-sent="onMessageWasSent"
-      :message-list="messageList"
-      :new-messages-count="newMessagesCount"
-      :is-open="isChatOpen"
-      :close="closeChat"
-      :open="openChat"
-      :show-emoji="true"
-      :show-file="true"
-      :show-edition="true"
-      :show-deletion="true"
-      :show-typing-indicator="showTypingIndicator"
-      :show-launcher="true"
-      :show-close-button="true"
-      :colors="colors"
-      :always-scroll-to-bottom="alwaysScrollToBottom"
-      :disable-user-list-toggle="false"
-      :message-styling="messageStyling"
-      @onType="handleOnType"
-      @edit="editMessage"
-    />
+    <div class="chat-content">
+      <!-- recordContent 聊天记录数组-->
+      <div v-for="(itemc,indexc) in messageList" :key="indexc">
+        <!-- 对方 -->
+        <div v-if="itemc.author != 'me'" class="word">
+          <img :src="participants[0].imageUrl">
+          <div class="info">
+            <p class="time">{{ itemc.author }}  {{ chatTime(itemc.type) }}</p>
+            <div class="info-content">{{ itemc.data.text+itemc.data.emoji }}</div>
+          </div>
+        </div>
+        <!-- 我的 -->
+        <div v-else class="word-my">
+          <div class="info">
+            <p class="time">{{ itemc.author }}  {{ chatTime(itemc.type) }}</p>
+            <div class="info-content">{{ itemc.data.text+itemc.data.emoji }}</div>
+          </div>
+          <img :src="participants[1].imageUrl">
+        </div>
+      </div>
+    </div>
+    <el-row :gutter="10">
+      <el-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1">
+        <div class="grid-content bg-purple">
+          <el-input v-model="txt_input" type="textarea" autosize placeholder="请输入内容">请输入内容区域</el-input>
+        </div>
+      </el-col>
+      <el-col-sub :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
+        <div class="grid-content bg-purple-light">
+          <el-button type="success" round @click="sendMessage">发送</el-button>
+        </div>
+      </el-col-sub>
+    </el-row>
   </div>
 </template>
 
@@ -36,6 +46,7 @@ export default {
   name: 'Dashboard',
   data() {
     return {
+      txt_input: '',
       ws: null,
       isDestroyed: false, // 页面是否销毁
       lockReconnect: false, // 是否真正建立连接
@@ -115,7 +126,11 @@ export default {
     this.ws.close()
   },
   methods: {
-    sendMessage(text) {
+    chatTime(text) {
+      return text
+    },
+    sendMessage() {
+      const text = this.txt_input
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen ? this.newMessagesCount : this.newMessagesCount + 1
         this.onMessageWasSent({ author: 'support', type: 'text', data: { text }})
@@ -268,6 +283,100 @@ export default {
   &-text {
     font-size: 30px;
     line-height: 46px;
+  }
+}
+.el-col {
+  width: 90%;
+  border-radius: 4px;
+}
+.el-col-sub {
+  width: 10%;
+  border-radius: 4px;
+}
+.chat-content{
+  width: 100%;
+  padding: 20px;
+  .word{
+     display: flex;
+     margin-bottom: 20px;
+     img{
+       width: 40px;
+       height: 40px;
+       border-radius: 50%;
+     }
+     .info{
+       margin-left: 10px;
+       .time{
+         font-size: 12px;
+         color: rgba(51,51,51,0.8);
+         margin: 0;
+         height: 20px;
+         line-height: 20px;
+         margin-top: -5px;
+       }
+       .info-content{
+          padding: 10px;
+          font-size: 14px;
+          background: #fff;
+          position: relative;
+          margin-top: 8px;
+        }
+        //小三角形
+        .info-content::before{
+            position: absolute;
+            left: -8px;
+            top: 8px;
+            content: '';
+            border-right: 10px solid #FFF;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+     }
+  }
+.word-my{
+    display: flex;
+    justify-content:flex-end;
+    margin-bottom: 20px;
+    img{
+       width: 40px;
+       height: 40px;
+       border-radius: 50%;
+     }
+     .info{
+       width: 90%;
+       margin-left: 10px;
+       text-align: right;
+       .time{
+         font-size: 12px;
+         color: rgba(51,51,51,0.8);
+         margin: 0;
+         height: 20px;
+         line-height: 20px;
+         margin-top: -5px;
+         margin-right: 10px;
+       }
+       .info-content{
+          max-width: 70%;
+          padding: 10px;
+          font-size: 14px;
+          float: right;
+          margin-right: 10px;
+          position: relative;
+          margin-top: 8px;
+          background: #A3C3F6;
+          text-align: left;
+        }
+        //小三角形
+        .info-content::after{
+            position: absolute;
+            right: -8px;
+            top: 8px;
+            content: '';
+            border-left: 10px solid #A3C3F6;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+     }
   }
 }
 </style>
