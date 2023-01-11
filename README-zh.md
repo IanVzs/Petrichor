@@ -30,6 +30,9 @@ npm run dev
 
 浏览器访问 [http://localhost:9528](http://localhost:9528)
 
+## 关于Mock数据
+详参[这里](https://panjiachen.github.io/vue-element-admin-site/zh/guide/essentials/mock-api.html), 这是`vue-element-admin`自己整理的详尽文档。
+
 ## 发布
 
 ```bash

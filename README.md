@@ -30,6 +30,10 @@ npm run dev
 
 This will automatically open http://localhost:9528
 
+
+## About Mock
+Please click [this](https://panjiachen.github.io/vue-element-admin-site/zh/guide/essentials/mock-api.html), this is `vue-element-admin`'s doc。
+
 ## Build
 
 ```bash
