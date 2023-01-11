@@ -12,7 +12,7 @@ const data = Mock.mock({
 })
 const detail = Mock.mock({
   id: '@id',
-  title: '@sentence(5, 10)',
+  title: '@sentence(3, 5)',
   'status|1': ['published', 'draft', 'deleted'],
   author: 'name',
   pubDtime: '@datetime',
@@ -37,7 +37,7 @@ module.exports = [
     }
   },
   {
-    url: '/petrichor/rss/detail',
+    url: '/petrichor/rss/detail/*',
     type: 'get',
     response: config => {
       return {

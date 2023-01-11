@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="text">
     <h1> {{ title }} </h1>
     <p v-html="html">.</p>
   </div>
@@ -39,19 +39,40 @@ export default {
     this.fetchData()
   },
   mounted() {
+    console.log('detail id: ', this.$route.params.pathMatch)
   },
   methods: {
     fetchData() {
       this.html2 = '你好'
       this.listLoading = true
-      getDetail().then(response => {
-        console.log(marked.parse(response.data.desc))
+      getDetail(this.$route.params.pathMatch).then(response => {
+        // console.log(marked.parse(response.data.desc))
         this.html = marked.parse(response.data.desc)
         this.title = response.data.title
         this.listLoading = false
+        console.log('你好, 这里是我的打印内容:' + response.data.title)
       })
-      console.log('你好, 这里是我的打印内容:' + this.title)
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.text {
+  // display: inline-block;
+  width: 90%;
+  // height: 90%;
+  min-width:400px;
+  // max-width:1000px;
+  padding:40px;
+  // overflow:auto;
+  margin:auto;
+  // position:absolute;
+  // top:0; left:0; bottom:0; right:0;
+
+  // .no-redirect {
+  //   color: #97a8be;
+  //   cursor: text;
+  // }
+}
+</style>

@@ -56,14 +56,22 @@ export const constantRoutes = [
   },
 
   {
-    path: '/rss',
+    path: '/rss/',
     component: Layout,
+    name: 'Consultation',
+    meta: { title: '资讯', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'index',
-        name: 'Rss',
-        component: () => import('@/views/rss/index'),
-        meta: { title: 'Rss', icon: 'form' }
+        path: 'index/*',
+        name: 'details',
+        component: () => import('@/views/rss/details/index'),
+        meta: { title: '详情(测试)', icon: 'form' }
+      },
+      {
+        path: 'list',
+        name: 'consultation_list',
+        component: () => import('@/views/rss/index_list'),
+        meta: { title: '文章列表', icon: 'form' }
       }
     ]
   },
