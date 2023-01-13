@@ -68,7 +68,7 @@ export const constantRoutes = [
         meta: { title: '详情(测试)', icon: 'form' }
       },
       {
-        path: 'list',
+        path: 'index',
         name: 'consultation_list',
         component: () => import('@/views/rss/index_list'),
         meta: { title: '文章列表', icon: 'form' }
@@ -77,23 +77,17 @@ export const constantRoutes = [
   },
 
   {
-    path: '/example',
+    path: '/editor',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    // redirect: '/example/editor',
+    name: 'Editor',
+    meta: { title: '编辑器', icon: 'el-icon-edit' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'mdeditor',
+        name: 'mdeditor',
+        component: () => import('@/views/editor/index'),
+        meta: { title: 'Md编辑器', icon: 'el-icon-edit' }
       }
     ]
   },

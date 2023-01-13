@@ -2,7 +2,7 @@ const Mock = require('mockjs')
 const { param2Obj } = require('./utils')
 
 const user = require('./user')
-const table = require('./table')
+const table = require('./editor')
 const rss_list = require('./rss')
 
 const mocks = [
