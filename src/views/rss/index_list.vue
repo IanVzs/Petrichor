@@ -15,7 +15,7 @@
       </el-table-column>
       <el-table-column label="Title">
         <template slot-scope="scope">
-          {{ scope.row.title }}
+          <div @click="jump2detail(scope.row.id)">{{ scope.row.title }}</div>
         </template>
       </el-table-column>
       <el-table-column label="Author" width="110" align="center">
@@ -73,6 +73,11 @@ export default {
         this.list = response.data.items
         this.listLoading = false
       })
+    },
+    jump2detail(row_id) {
+      console.log(row_id)
+      this.$router.push({ path: 'index/' + row_id })
+      // this.$router.go(-1)
     }
   }
 }

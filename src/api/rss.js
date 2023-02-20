@@ -10,8 +10,7 @@ export function getList(params) {
 
 export function getDetail(params) {
   return request({
-    url: '/petrichor/rss/detail',
-    method: 'get',
-    params
+    url: '/petrichor/rss/detail/' + params,
+    method: 'get'
   })
 }

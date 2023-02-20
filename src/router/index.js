@@ -56,36 +56,38 @@ export const constantRoutes = [
   },
 
   {
-    path: '/rss',
+    path: '/rss/',
     component: Layout,
+    name: 'Consultation',
+    meta: { title: '资讯', icon: 'el-icon-s-help' },
     children: [
       {
+        path: 'index/*',
+        name: 'details',
+        component: () => import('@/views/rss/details/index'),
+        meta: { title: '详情(测试)', icon: 'form' }
+      },
+      {
         path: 'index',
-        name: 'Rss',
-        component: () => import('@/views/rss/index'),
-        meta: { title: 'Rss', icon: 'form' }
+        name: 'consultation_list',
+        component: () => import('@/views/rss/index_list'),
+        meta: { title: '文章列表', icon: 'form' }
       }
     ]
   },
 
   {
-    path: '/example',
+    path: '/editor',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    // redirect: '/example/editor',
+    name: 'Editor',
+    meta: { title: '编辑器', icon: 'el-icon-edit' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'mdeditor',
+        name: 'mdeditor',
+        component: () => import('@/views/editor/index'),
+        meta: { title: 'Md编辑器', icon: 'el-icon-edit' }
       }
     ]
   },

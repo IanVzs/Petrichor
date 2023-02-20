@@ -3,7 +3,7 @@
 English | [简体中文](./README-zh.md)
 
 > A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
-> & websocket & chat
+> & websocket & vue-beautiful-chat
 
 **Live demo:** 
 yet...
@@ -29,6 +29,10 @@ npm run dev
 ```
 
 This will automatically open http://localhost:9528
+
+
+## About Mock
+Please click [this](https://panjiachen.github.io/vue-element-admin-site/zh/guide/essentials/mock-api.html), this is `vue-element-admin`'s doc。
 
 ## Build
 
