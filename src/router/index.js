@@ -54,7 +54,6 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
-
   {
     path: '/rss/',
     component: Layout,
@@ -75,7 +74,39 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/stadium/',
+    component: Layout,
+    redirect: '/index',
+    meta: { title: '体育场', icon: 'form' },
+    children: [
+      {
+        path: 'index',
+        name: 'stadium_list',
+        component: () => import('@/views/stadium/index_list'),
+        meta: { title: '体育场列表', icon: 'form' }
+      }
+    ]
+  },
+  // {
+  //   path: '/stadium/',
+  //   component: Layout,
+  //   meta: { title: '体育场', icon: 'el-icon-s-help' },
+  //   children: [
+  //     {
+  //       path: 'index/*',
+  //       name: 'details',
+  //       component: () => import('@/views/stadium/details/index'),
+  //       meta: { title: '详情(测试)', icon: 'form' }
+  //     },
+  //     {
+  //       path: 'index',
+  //       name: 'stadium_list',
+  //       component: () => import('@/views/stadium/index_list'),
+  //       meta: { title: '体育场列表', icon: 'form' }
+  //     }
+  //   ]
+  // },
   {
     path: '/editor',
     component: Layout,

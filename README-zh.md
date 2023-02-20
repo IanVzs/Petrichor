@@ -30,6 +30,11 @@ npm run dev
 
 浏览器访问 [http://localhost:9528](http://localhost:9528)
 
+## nodejs version >= 17.0.0 版本问题
+因为nodejs自17版开始，openssl升级为3.0,但之前的组件都是基于1.0的,所以要么升级组件(我还不会)要么强制使用1.0版本
+
+可以通过`export NODE_OPTIONS=--openssl-legacy-provider`设置环境变量, 等后续再研究升级组件的方法.
+
 ## 关于Mock数据
 详参[这里](https://panjiachen.github.io/vue-element-admin-site/zh/guide/essentials/mock-api.html), 这是`vue-element-admin`自己整理的详尽文档。
 

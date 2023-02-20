@@ -30,6 +30,11 @@ npm run dev
 
 This will automatically open http://localhost:9528
 
+## Issue with nodejs version >= 17.0.0
+
+Starting from nodejs v17, OpenSSL has been upgraded to version 3.0. However, many existing components are still based on version 1.0, so you have to either upgrade the components (which I don't know how to do yet) or force the use of version 1.0.
+
+You can set the environment variable `export NODE_OPTIONS=--openssl-legacy-provider` to use version 1.0. We can look into upgrading the components in the future.
 
 ## About Mock
 Please click [this](https://panjiachen.github.io/vue-element-admin-site/zh/guide/essentials/mock-api.html), this is `vue-element-admin`'s doc。
