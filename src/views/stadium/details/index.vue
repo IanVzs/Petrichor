@@ -7,7 +7,7 @@
 
 <script>
 // import { mapGetters } from 'vuex'
-import { getDetail } from '@/api/rss'
+import { getDetail } from '@/api/stadium'
 import { marked } from 'marked'
 import 'highlight.js/styles/github.css'
 // or const { marked } = require('marked');

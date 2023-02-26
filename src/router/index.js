@@ -77,14 +77,28 @@ export const constantRoutes = [
   {
     path: '/stadium/',
     component: Layout,
-    redirect: '/index',
+    redirect: '/list',
     meta: { title: '体育场', icon: 'form' },
     children: [
       {
-        path: 'index',
+        path: 'list',
         name: 'stadium_list',
         component: () => import('@/views/stadium/index_list'),
         meta: { title: '体育场列表', icon: 'form' }
+      },
+      {
+        path: 'index/*',
+        name: 'details',
+        component: () => import('@/views/stadium/details/index'),
+        // meta: { title: '详情(测试)', icon: 'form' }
+        hidden: true
+      },
+      {
+        path: 'add',
+        name: 'add',
+        component: () => import('@/views/stadium/details/add'),
+        // meta: { title: '详情(测试)', icon: 'form' }
+        hidden: true
       }
     ]
   },

@@ -1,0 +1,16 @@
+import request from '@/utils/request'
+
+export function getList(params) {
+  return request({
+    url: '/petrichor/stadium/list',
+    method: 'get',
+    params
+  })
+}
+
+export function getDetail(params) {
+  return request({
+    url: '/petrichor/stadium/detail/' + params,
+    method: 'get'
+  })
+}
