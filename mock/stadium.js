@@ -39,6 +39,32 @@ module.exports = [
     }
   },
   {
+    url: '/petrichor/stadium/saveone',
+    type: 'post',
+    response: config => {
+      return {
+        code: 20000,
+        data: {
+          sucess: true,
+          msg: "保存成功"
+        }
+      }
+    }
+  },
+  {
+    url: '/petrichor/stadium/submitone',
+    type: 'post',
+    response: config => {
+      return {
+        code: 20000,
+        data: {
+          sucess: true,
+          msg: "提交成功"
+        }
+      }
+    }
+  },
+  {
     url: '/petrichor/stadium/detail/*',
     type: 'get',
     response: config => {

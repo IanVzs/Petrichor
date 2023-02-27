@@ -29,6 +29,7 @@
 <script>
 // import mavonEditor from 'mavon-editor'
 // import 'mavon-editor/dist/css/index.css'
+import { submitOne, saveOne } from '@/api/stadium'
 
 export default {
   name: 'MyPage',
@@ -72,7 +73,20 @@ export default {
             markdown: this.markdown
           }
           console.log(data)
-          // TODO: 通过接口提交数据
+          // 通过接口提交数据
+          submitOne(data).then(response => {
+            if (response.data.sucess) {
+              this.$message({
+                message: response.data.msg,
+                type: 'success'
+              })
+            } else {
+              this.$message({
+                message: response.data.msg,
+                type: 'warning'
+              })
+            }
+          })
         } else {
           return false
         }
@@ -87,7 +101,20 @@ export default {
         markdown: this.markdown
       }
       console.log(data)
-      // TODO: 通过接口保存数据
+      // 通过接口保存数据
+      saveOne(data).then(response => {
+        if (response.data.sucess) {
+          this.$message({
+            message: response.data.msg,
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: response.data.msg,
+            type: 'warning'
+          })
+        }
+      })
     },
     handleInputBlur(value) {
       console.debug(value)

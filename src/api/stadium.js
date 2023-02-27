@@ -14,3 +14,19 @@ export function getDetail(params) {
     method: 'get'
   })
 }
+
+export function saveOne(data) {
+  return request({
+    url: '/petrichor/stadium/saveone/',
+    method: 'post',
+    data
+  })
+}
+
+export function submitOne(data) {
+  return request({
+    url: '/petrichor/stadium/submitone/',
+    method: 'post',
+    data
+  })
+}
