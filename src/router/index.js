@@ -62,7 +62,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'index/*',
-        name: 'details',
+        name: '详情',
         component: () => import('@/views/rss/details/index'),
         meta: { title: '详情(测试)', icon: 'form' }
       },
@@ -88,7 +88,7 @@ export const constantRoutes = [
       },
       {
         path: 'index/*',
-        name: 'details',
+        name: '体育场详情',
         component: () => import('@/views/stadium/details/index'),
         // meta: { title: '详情(测试)', icon: 'form' }
         hidden: true
@@ -208,7 +208,18 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/opencv',
+    component: Layout,
+    children: [
+      {
+        path: 'opencv',
+        component: () => import('@/views/opencv'),
+        name: '图像处理',
+        meta: { title: '图像处理' }
+      }
+    ]
+  },
   {
     path: 'external-link',
     component: Layout,
