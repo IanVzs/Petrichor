@@ -30,7 +30,7 @@ module.exports = [
     response: config => {
       const items = data.items
       return {
-        code: 20000,
+        code: 200,
         data: {
           total: items.length,
           items: items
@@ -43,7 +43,7 @@ module.exports = [
     type: 'post',
     response: config => {
       return {
-        code: 20000,
+        code: 200,
         data: {
           sucess: true,
           msg: "保存成功"
@@ -56,7 +56,7 @@ module.exports = [
     type: 'post',
     response: config => {
       return {
-        code: 20000,
+        code: 200,
         data: {
           sucess: true,
           msg: "提交成功"
@@ -69,7 +69,7 @@ module.exports = [
     type: 'get',
     response: config => {
       return {
-        code: 20000,
+        code: 200,
         data: detail
       }
     }
