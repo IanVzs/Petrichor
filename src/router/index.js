@@ -54,7 +54,6 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
-
   {
     path: '/rss/',
     component: Layout,
@@ -63,7 +62,7 @@ export const constantRoutes = [
     children: [
       {
         path: 'index/*',
-        name: 'details',
+        name: '详情',
         component: () => import('@/views/rss/details/index'),
         meta: { title: '详情(测试)', icon: 'form' }
       },
@@ -75,7 +74,53 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/stadium/',
+    component: Layout,
+    redirect: '/list',
+    meta: { title: '体育场', icon: 'form' },
+    children: [
+      {
+        path: 'list',
+        name: 'stadium_list',
+        component: () => import('@/views/stadium/index_list'),
+        meta: { title: '体育场列表', icon: 'form' }
+      },
+      {
+        path: 'index/*',
+        name: '体育场详情',
+        component: () => import('@/views/stadium/details/index'),
+        // meta: { title: '详情(测试)', icon: 'form' }
+        hidden: true
+      },
+      {
+        path: 'add',
+        name: 'add',
+        component: () => import('@/views/stadium/details/add'),
+        // meta: { title: '详情(测试)', icon: 'form' }
+        hidden: true
+      }
+    ]
+  },
+  // {
+  //   path: '/stadium/',
+  //   component: Layout,
+  //   meta: { title: '体育场', icon: 'el-icon-s-help' },
+  //   children: [
+  //     {
+  //       path: 'index/*',
+  //       name: 'details',
+  //       component: () => import('@/views/stadium/details/index'),
+  //       meta: { title: '详情(测试)', icon: 'form' }
+  //     },
+  //     {
+  //       path: 'index',
+  //       name: 'stadium_list',
+  //       component: () => import('@/views/stadium/index_list'),
+  //       meta: { title: '体育场列表', icon: 'form' }
+  //     }
+  //   ]
+  // },
   {
     path: '/editor',
     component: Layout,
@@ -163,7 +208,18 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/opencv',
+    component: Layout,
+    children: [
+      {
+        path: 'opencv',
+        component: () => import('@/views/opencv'),
+        name: '图像处理',
+        meta: { title: '图像处理' }
+      }
+    ]
+  },
   {
     path: 'external-link',
     component: Layout,
@@ -180,6 +236,7 @@ export const constantRoutes = [
 ]
 
 const createRouter = () => new Router({
+  base: '/petrichor',
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoutes

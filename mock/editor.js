@@ -23,7 +23,7 @@ module.exports = [
     type: 'get',
     response: config => {
       return {
-        code: 20000,
+        code: 200,
         data: data
       }
     }
@@ -33,7 +33,7 @@ module.exports = [
     type: 'post',
     response: config => {
       return {
-        code: 20000,
+        code: 200,
         data: savedata
       }
     }

@@ -377,7 +377,7 @@ export default {
       const _this = this
       if (window.WebSocket) {
         // 初始化weosocket
-        const wsuri = 'ws://192.168.0.175:8000/ws'
+        const wsuri = 'ws://192.168.10.14:8000/ws'
         _this.ws = new WebSocket(wsuri)
         // 连接建立之后执行send方法发送数据
         _this.ws.onopen = function(e) {

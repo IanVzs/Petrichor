@@ -18,6 +18,11 @@ import '@/permission' // permission control
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 
+import Axios from 'axios'
+import * as cv from 'opencv.js'
+Vue.prototype.$http = Axios
+Vue.prototype.$cv = cv
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -26,10 +31,16 @@ import 'mavon-editor/dist/css/index.css'
  * Currently MockJs will be used in the production environment,
  * please remove it before going online ! ! !
  */
-if (process.env.NODE_ENV === 'production') {
-  const { mockXHR } = require('../mock')
-  mockXHR()
-}
+// * 线上环境不使用mock
+// if (process.env.NODE_ENV === 'production') {
+//   const { mockXHR } = require('../mock')
+//   mockXHR()
+// }
+
+// cv
+// eslint-disable-next-line no-unused-vars
+let info
+info = cv.getBuildInformation()
 
 // mavonEditor
 // import with ES6
