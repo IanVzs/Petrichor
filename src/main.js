@@ -39,8 +39,10 @@ Vue.prototype.$cv = cv
 // }
 
 // cv
+// eslint-disable-next-line no-unused-vars
 let info
 info = cv.getBuildInformation()
+
 // mavonEditor
 // import with ES6
 // use
